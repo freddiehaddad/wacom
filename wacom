@@ -1,0 +1,53 @@
+#!/bin/bash
+#
+# Utility to lookup window position and size and map the Wacom tablet to it.
+#
+# Dependencies:
+#   - xwininfo
+#   - xsetwacom
+
+# Tablet drawing application (use xprop and copy WM_NAME(STRING))
+APPLICATION_NAME="Lorien v0.6.0"
+
+# xsetwacom list devices
+STYLUS_NAME="Wacom One by Wacom M Pen stylus"
+
+# Rotate none|half|cw|ccw
+STYLUS_ROTATION="ccw"
+
+get_x=0
+get_y=0
+get_w=0
+get_h=0
+for token in $(xwininfo -name "$APPLICATION_NAME"); do
+	if [[ $token = "X:" ]] && [ -z ${X+x} ]; then
+		get_x=1
+	elif [[ $get_x -eq 1 ]]; then
+		X=$token
+		get_x=0
+	fi
+
+	if [[ $token = "Y:" ]] && [ -z ${Y+x} ]; then
+		get_y=1
+	elif [[ $get_y -eq 1 ]]; then
+		Y=$token
+		get_y=0
+	fi
+
+	if [[ $token = "Width:" ]] && [ -z ${W+x} ]; then
+		get_w=1
+	elif [[ $get_w -eq 1 ]]; then
+		W=$token
+		get_w=0
+	fi
+
+	if [[ $token = "Height:" ]] && [ -z ${H+x} ]; then
+		get_h=1
+	elif [[ $get_h -eq 1 ]]; then
+		H=$token
+		get_h=0
+	fi
+done
+
+xsetwacom set "$STYLUS_NAME" MapToOutput "${W}x${H}+${X}+${Y}"
+xsetwacom set "$STYLUS_NAME" Rotate "$STYLUS_ROTATION"
