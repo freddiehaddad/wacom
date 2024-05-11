@@ -50,4 +50,9 @@ for token in $(xwininfo -name "$APPLICATION_NAME"); do
 done
 
 xsetwacom set "$STYLUS_NAME" MapToOutput "${W}x${H}+${X}+${Y}"
+
+if [ $# -gt 0 ]; then
+	STYLUS_ROTATION="$1"
+fi
+
 xsetwacom set "$STYLUS_NAME" Rotate "$STYLUS_ROTATION"
