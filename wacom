@@ -13,7 +13,7 @@ APPLICATION_NAME="Lorien v0.6.0"
 STYLUS_NAME="Wacom One by Wacom M Pen stylus"
 
 # Rotate none|half|cw|ccw
-STYLUS_ROTATION="ccw"
+STYLUS_ROTATION="none"
 
 get_x=0
 get_y=0
