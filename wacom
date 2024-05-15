@@ -15,22 +15,23 @@ STYLUS_NAME="Wacom One by Wacom M Pen stylus"
 # Rotate none|half|cw|ccw
 TABLET_ROTATION="none"
 
-# X, Y, W, H
+# Index mappings
+X=0 Y=1 W=2 H=3
 dimensions=()
 
-# output from: xwininfo | grep
+# output from: xwininfo ... | grep ...
 #
 #  Absolute upper-left X:  3740
 #  Absolute upper-left Y:  735
 #  Width: 1377
 #  Height: 702
-while IFS=: read -r _ value; do
-	value=$(echo -e "$value" | tr -d "[:space:]")
-	dimensions+=("$value")
+while IFS=: read -r _ dimension; do
+	dimension=$(echo -e "$dimension" | tr -d "[:space:]")
+	dimensions+=("$dimension")
 done < <(xwininfo -name "$APPLICATION_NAME" | grep -e "Absolute" -e "Width" -e "Height")
 
 # Argument order is W H X Y
-xsetwacom set "$STYLUS_NAME" MapToOutput "${dimensions[2]}x${dimensions[3]}+${dimensions[0]}+${dimensions[1]}"
+xsetwacom set "$STYLUS_NAME" MapToOutput "${dimensions[$W]}x${dimensions[$H]}+${dimensions[$X]}+${dimensions[$Y]}"
 
 if [ $# -gt 0 ]; then
 	TABLET_ROTATION="$1"
