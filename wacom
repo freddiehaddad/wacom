@@ -6,14 +6,51 @@
 #   - xwininfo
 #   - xsetwacom
 
+# Name of the executable script.
+EXECUTABLE="$(basename "$0")"
 # Tablet drawing application (use xprop and copy WM_NAME(STRING))
 APPLICATION_NAME="Lorien v0.6.0"
-
 # xsetwacom list devices
 STYLUS_NAME="Wacom One by Wacom M Pen stylus"
-
 # Rotate none|half|cw|ccw
 TABLET_ROTATION="none"
+
+# Getopts
+OPTSTRING=":a:r:s:h"
+while getopts "$OPTSTRING" option; do
+	case "$option" in
+	a)
+		APPLICATION_NAME=$OPTARG
+		;;
+	r)
+		TABLET_ROTATION=$OPTARG
+		;;
+	s)
+		STYLUS_NAME=$OPTARG
+		;;
+	h)
+		printf "Usage: %s [OPTION]...\n" "$EXECUTABLE"
+		printf "Maps your stylus to a specified window.\n"
+		printf "Example: %s -a \"%s\" -r %s -s \"%s\"\n" "$EXECUTABLE" "$APPLICATION_NAME" "$TABLET_ROTATION" "$STYLUS_NAME"
+		printf "Maps the stylus to the %s window using the default tablet orientation\n" "$APPLICATION_NAME"
+		printf "\n"
+		printf "Options:\n"
+		printf " -a         application name (i.e. Lorien v0.6.0)\n"
+		printf "            use xprop to lookup the name\n"
+		printf " -r         tablet rotation (none|half|cw|ccw)\n"
+		printf "            use xprop to lookup the name\n"
+		printf " -s         stylus name\n"
+		printf "            use xsetwacom list devices for name\n"
+
+		exit 0
+		;;
+	?)
+		printf "Usage: %s [OPTION]...\n" "$EXECUTABLE"
+		printf "Try '%s -h' for more information.\n" "$EXECUTABLE"
+		exit 1
+		;;
+	esac
+done
 
 # Index mappings
 X=0 Y=1 W=2 H=3
