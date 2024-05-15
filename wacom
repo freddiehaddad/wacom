@@ -25,7 +25,7 @@ dimensions=()
 #  Width: 1377
 #  Height: 702
 while IFS=: read -r _ value; do
-	value=$(echo -e "${value}" | tr -d "[:space:]")
+	value=$(echo -e "$value" | tr -d "[:space:]")
 	dimensions+=("$value")
 done < <(xwininfo -name "$APPLICATION_NAME" | grep -e "Absolute" -e "Width" -e "Height")
 
