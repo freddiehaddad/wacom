@@ -13,7 +13,7 @@ APPLICATION_NAME="Lorien v0.6.0"
 STYLUS_NAME="Wacom One by Wacom M Pen stylus"
 
 # Rotate none|half|cw|ccw
-STYLUS_ROTATION="none"
+TABLET_ROTATION="none"
 
 # X, Y, W, H
 dimensions=()
@@ -33,7 +33,7 @@ done < <(xwininfo -name "$APPLICATION_NAME" | grep -e "Absolute" -e "Width" -e "
 xsetwacom set "$STYLUS_NAME" MapToOutput "${dimensions[2]}x${dimensions[3]}+${dimensions[0]}+${dimensions[1]}"
 
 if [ $# -gt 0 ]; then
-	STYLUS_ROTATION="$1"
+	TABLET_ROTATION="$1"
 fi
 
-xsetwacom set "$STYLUS_NAME" Rotate "$STYLUS_ROTATION"
+xsetwacom set "$STYLUS_NAME" Rotate "$TABLET_ROTATION"
