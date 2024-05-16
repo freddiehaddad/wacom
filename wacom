@@ -35,12 +35,14 @@ while getopts "$OPTSTRING" option; do
 		printf "Maps the stylus to the %s window using the default tablet orientation\n" "$APPLICATION_NAME"
 		printf "\n"
 		printf "Options:\n"
-		printf " -a         application name (i.e. Lorien v0.6.0)\n"
-		printf "            use xprop to lookup the name\n"
-		printf " -r         tablet rotation (none|half|cw|ccw)\n"
-		printf "            use xprop to lookup the name\n"
-		printf " -s         stylus name\n"
-		printf "            use xsetwacom list devices for name\n"
+		printf " -a         Name of application stylus should be mapped to\n"
+		printf "            Use xprop to lookup the name\n"
+		printf "            (default: %s)\n" "$APPLICATION_NAME"
+		printf " -r         How the table is rotated (i.e. orientation of tablet)\n"
+		printf "            Options: [none|half|cw|ccw] (default: none)\n"
+		printf " -s         Name of stylus.\n"
+		printf "            Use xsetwacom list devices for name.\n"
+		printf "            (default: %s)\n" "$STYLUS_NAME"
 
 		exit 0
 		;;
