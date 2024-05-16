@@ -29,25 +29,24 @@ while getopts "$OPTSTRING" option; do
 		STYLUS_NAME=$OPTARG
 		;;
 	h)
-		printf "Usage: %s [OPTION]...\n" "$EXECUTABLE"
-		printf "Maps your stylus to a specified window.\n"
+		printf "Usage: %s [OPTIONS]\n" "$EXECUTABLE"
+		printf "Maps your stylus to the specified window.\n"
 		printf "Example: %s -a \"%s\" -r %s -s \"%s\"\n" "$EXECUTABLE" "$APPLICATION_NAME" "$TABLET_ROTATION" "$STYLUS_NAME"
 		printf "Maps the stylus to the %s window using the default tablet orientation\n" "$APPLICATION_NAME"
 		printf "\n"
 		printf "Options:\n"
-		printf " -a         Name of application stylus should be mapped to\n"
-		printf "            Use xprop to lookup the name\n"
-		printf "            (default: %s)\n" "$APPLICATION_NAME"
-		printf " -r         How the table is rotated (i.e. orientation of tablet)\n"
-		printf "            Options: [none|half|cw|ccw] (default: none)\n"
-		printf " -s         Name of stylus.\n"
-		printf "            Use xsetwacom list devices for name.\n"
-		printf "            (default: %s)\n" "$STYLUS_NAME"
+		printf " -a        name of application stylus should be mapped to\n"
+		printf "           (use xprop to lookup the WM_NAME value)\n"
+		printf "           (default: %s)\n" "$APPLICATION_NAME"
+		printf " -r        how the table is rotated (i.e. orientation of tablet)\n"
+		printf "           options: [none|half|cw|ccw] (default: none)\n"
+		printf " -s        name of stylus (use xsetwacom list devices)\n"
+		printf "           (default: %s)\n" "$STYLUS_NAME"
 
 		exit 0
 		;;
 	?)
-		printf "Usage: %s [OPTION]...\n" "$EXECUTABLE"
+		printf "Usage: %s [OPTIONS]\n" "$EXECUTABLE"
 		printf "Try '%s -h' for more information.\n" "$EXECUTABLE"
 		exit 1
 		;;
