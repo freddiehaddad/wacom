@@ -38,7 +38,7 @@ while getopts "$OPTSTRING" option; do
 		printf " -a        name of application stylus should be mapped to\n"
 		printf "           (use xprop to lookup the WM_NAME value)\n"
 		printf "           (default: %s)\n" "$APPLICATION_NAME"
-		printf " -r        how the tablet is rotated (i.e. orientation of tablet)\n"
+		printf " -r        how the tablet is rotated (orientation of tablet)\n"
 		printf "           options: [none|half|cw|ccw] (default: none)\n"
 		printf " -s        name of stylus (use xsetwacom list devices)\n"
 		printf "           (default: %s)\n" "$STYLUS_NAME"

@@ -31,7 +31,7 @@ Options:
  -a        name of application stylus should be mapped to
            (use xprop to lookup the WM_NAME value)
            (default: Lorien v0.6.0)
- -r        how the tablet is rotated (i.e. orientation of tablet)
+ -r        how the tablet is rotated (orientation of tablet)
            options: [none|half|cw|ccw] (default: none)
  -s        name of stylus (use xsetwacom list devices)
            (default: Wacom One by Wacom M Pen stylus)
